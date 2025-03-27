@@ -1,10 +1,12 @@
 import { Component, effect, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule, NgIf, RouterOutlet, HeaderComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -97,4 +99,6 @@ export class AppComponent {
   fontSize = '50';
 
   show = true;
+
+  //Router
 }
