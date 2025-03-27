@@ -1,7 +1,10 @@
 import { Component, effect, signal, WritableSignal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
+  imports: [FormsModule, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -25,7 +28,7 @@ export class AppComponent {
     });
 
     effect(() => {
-      if (this.count2() >= 2) {
+      if (this.count2() >= 1) {
         this.displayHeading.set(true);
         setTimeout(() => {
           this.displayHeading.set(false);
@@ -66,4 +69,32 @@ export class AppComponent {
   incrementCount() {
     this.count2.set(this.count2() + 1);
   }
+
+  name = '';
+  changeName(event: Event) {
+    const val = (event.target as HTMLInputElement).value;
+    this.name = val;
+  }
+
+  task = '';
+  taskList: { id: number; task: string }[] = [];
+
+  addTask() {
+    this.taskList.push({
+      id: this.taskList.length + 1,
+      task: this.task,
+    });
+    this.task = '';
+    console.log(this.taskList);
+  }
+  deleteTask(taskId: number) {
+    this.taskList = this.taskList
+      .filter((item) => item.id !== taskId)
+      .map((item, index) => ({ id: index + 1, task: item.task }));
+  }
+
+  bgColor = 'orange';
+  fontSize = '50';
+
+  show = true;
 }

@@ -37,3 +37,8 @@
 .btn-group button:hover {
   transform: scale(1.05);
 }
+.task-list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
