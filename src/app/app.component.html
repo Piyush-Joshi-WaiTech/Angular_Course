@@ -37,3 +37,15 @@
 <h1>Computed Signals</h1>
 
 <button (click)="showValue()">Show Value</button>
+
+<br />
+<hr />
+
+<h1>Effect Signals</h1>
+<h1>{{ userName() }}</h1>
+
+<button (click)="incrementCount()">Update User Name</button>
+@if (displayHeading()) {
+<h1 style="background-color: green">Heading Appears!</h1>
+}
+<div class="container text-center mt-5" style="min-height: 50vh"></div>
