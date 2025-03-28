@@ -1,3 +1,21 @@
-<h1 style="cursor: pointer">Home Page</h1>
+<!-- <h1 style="cursor: pointer">Home Page</h1>
 
-<a routerLink="/new-profile">Go To Profile Page</a>
+<a routerLink="/new-profile">Go To Profile Page</a> -->
+<h1>User List</h1>
+
+<ul *ngIf="!selectedUser">
+  <!-- Hide list when a user is selected -->
+  <li
+    *ngFor="let user of users; trackBy: trackByUserId"
+    (click)="selectUser(user)"
+    style="cursor: pointer"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+
+<!-- Show only the selected username -->
+<h2 *ngIf="selectedUser">Hello {{ selectedUser.name }}, How are you ?</h2>
+
+<!-- Button to go back and show all users again -->
+<button *ngIf="selectedUser" (click)="resetSelection()">Back</button>
