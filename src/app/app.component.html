@@ -99,5 +99,78 @@
 <br />
 <app-header></app-header>
 <router-outlet></router-outlet>
+
+<br />
+<hr />
+
+<h1>Basic of React Forms</h1>
+<form action="" method="post">
+  <input type="text" placeholder="enter name" [formControl]="name2" />
+  <br /><br />
+  <input
+    type="password"
+    placeholder="Enter Password "
+    [formControl]="Password"
+  />
+  <br /><br />
+  <button type (click)="displayValue()">Login</button>
+  <h3>{{ name2.value }}</h3>
+  <h3>{{ Password.value }}</h3>
+</form>
+
+<br />
+<hr />
+
+<h1>Form Grouping in Reactive Forms and Validation</h1>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <input type="text" placeholder="Enter Name" formControlName="name3" />
+  <span class="error" *ngIf="submitted && name3?.invalid">
+    *Name is required
+  </span>
+  <br /><br />
+
+  <input
+    type="password"
+    placeholder="Enter Password"
+    formControlName="password"
+  />
+  <span class="error" *ngIf="submitted && password?.invalid">
+    *Password is required and must be at least 5 characters long
+  </span>
+  <br /><br />
+
+  <input type="text" placeholder="Enter Email" formControlName="email" />
+  <span class="error" *ngIf="submitted && email?.invalid">
+    *Email is required and must be less than 50 characters
+  </span>
+  <br /><br />
+
+  <button type="submit">Submit</button>
+</form>
+
+<h1>{{ profileForm.value.name3 }}</h1>
+<h1>{{ profileForm.value.password }}</h1>
+<h1>{{ profileForm.value.email }}</h1>
+
+<br />
+<hr />
+
+<h1>Template Driven Forms</h1>
+
+<form #userForm="ngForm" (ngSubmit)="addDetails(userForm.value)">
+  <input type="text" placeholder="enter name" name="name" ngModel />
+  <br /><br />
+  <input type="password" placeholder="enter password" name="password" ngModel />
+  <br /><br />
+  <select name="gender">
+    <option value="">Select Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+  <br /><br />
+  <input type="range" min="0" max="18" name="range" ngModel /> <br />
+  <button type="submit">Add User</button>
+</form>
+
 <!-- Increase Height -->
-<div class="con tainer text-center mt-5" style="min-height: 50vh"></div>
+<div class="container text-center mt-5" style="min-height: 50vh"></div>

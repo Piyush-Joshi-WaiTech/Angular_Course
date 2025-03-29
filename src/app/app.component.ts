@@ -1,12 +1,26 @@
 import { Component, effect, signal, WritableSignal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  NgForm,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-
+import { FormBuilder } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, NgIf, RouterOutlet, HeaderComponent, HeaderComponent],
+  imports: [
+    FormsModule,
+    NgIf,
+    RouterOutlet,
+    HeaderComponent,
+    HeaderComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -100,5 +114,45 @@ export class AppComponent {
 
   show = true;
 
-  //Router
+  name2 = new FormControl();
+  Password = new FormControl();
+
+  displayValue() {
+    console.log(this.name2.value, this.Password.value);
+  }
+
+  profileForm = new FormGroup({
+    name3: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+  });
+
+  submitted = false;
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.profileForm.invalid) {
+      this.profileForm.markAllAsTouched();
+      return;
+    }
+
+    console.log(this.profileForm.value);
+  }
+
+  get name3() {
+    return this.profileForm.get('name3');
+  }
+  get email() {
+    return this.profileForm.get('email');
+  }
+  get password() {
+    return this.profileForm.get('password');
+  }
+  addDetails(val: NgForm) {
+    console.log(val.value);
+  }
 }
