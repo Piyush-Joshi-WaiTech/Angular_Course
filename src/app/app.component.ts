@@ -6,20 +6,23 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { NgIf, CommonModule, NgFor } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { CurrencyConverterPipe } from './pipe/currency-converter.pipe';
 @Component({
   selector: 'app-root',
   imports: [
     FormsModule,
     NgIf,
+    NgFor,
     RouterOutlet,
     HeaderComponent,
     HeaderComponent,
     ReactiveFormsModule,
+    CurrencyConverterPipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -155,4 +158,13 @@ export class AppComponent {
   addDetails(val: NgForm) {
     console.log(val.value);
   }
+
+  users = ['Piyush', 'Rushi', 'Kalyan', 'Gaurav'];
+  receivedUsers: string[] = [];
+
+  getUsers() {
+    this.receivedUsers = [...this.users]; // Pass users data
+    console.log('Users passed:', this.receivedUsers);
+  }
+  amount = 10;
 }
