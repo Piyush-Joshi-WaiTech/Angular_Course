@@ -172,5 +172,28 @@
   <button type="submit">Add User</button>
 </form>
 
+<br />
+<hr />
+
+<h1>Pass data in parent component from child component</h1>
+<!-- User Component Code Merged Here -->
+<h1>User Component</h1>
+<button (click)="getUsers()" style="margin-right: 5px">Pass Data 1</button>
+<button (click)="getUsers()">Pass Data 2</button>
+
+<!-- Display received users -->
+<h2>Users List:</h2>
+<ul>
+  <li *ngFor="let user of receivedUsers">{{ user }}</li>
+</ul>
+
+<br />
+<hr />
+
+<h1>Custom Pipes in Angular</h1>
+<h2>{{ amount | currencyConverter }}</h2>
+<h2>{{ amount | currencyConverter : 12 }}</h2>
+
+<h2>{{ amount | currencyConverter }}</h2>
 <!-- Increase Height -->
 <div class="container text-center mt-5" style="min-height: 50vh"></div>
